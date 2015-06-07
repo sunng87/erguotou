@@ -1,0 +1,11 @@
+[package]
+name = "erguotou"
+version = "0.1.0"
+authors = ["Ning Sun <sunng@about.me>"]
+
+[lib]
+name = "erguotou"
+
+[dependencies]
+rustc-serialize = "*"
+hyper = "*"

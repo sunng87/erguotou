@@ -1,3 +1,5 @@
+use std::convert::From;
+
 use hyper::client::{IntoUrl, RequestBuilder};
 use hyper::header::ContentType;
 use rustc_serialize::Encodable;
@@ -8,10 +10,10 @@ pub struct JsonParam<'a> {
     serialized: String
 }
 
-impl<'a> JsonParam<'a> {
-    pub fn of(data: &'a ToJson) -> JsonParam<'a> {
+impl<'a> From<&'a ToJson> for JsonParam<'a> {
+    fn from(data_ref: &'a ToJson) -> JsonParam<'a> {
         JsonParam {
-            value: data,
+            value: data_ref,
             serialized: String::new()
         }
     }
@@ -39,6 +41,7 @@ mod test {
 
     use hyper::Ok;
     use hyper::client::{Client};
+    use rustc_serialize::json::{ToJson};
     use ::json::{JsonParam, JsonRPC};
 
     #[test]
@@ -48,7 +51,7 @@ mod test {
 
         let mut client = Client::new();
 
-        let mut json_param = JsonParam::of(&data);
+        let mut json_param: JsonParam = JsonParam::from(&data as &ToJson);
         let mut resp = client.post("http://localhost:8080")
             .json(&mut json_param).send().unwrap();
 

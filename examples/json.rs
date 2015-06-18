@@ -1,8 +1,9 @@
 extern crate hyper;
 extern crate rustc_serialize;
 extern crate erguotou;
+#[macro_use]
+extern crate maplit;
 
-use std::collections::BTreeMap;
 use std::io::Read;
 
 use hyper::client::{Client};
@@ -10,8 +11,9 @@ use rustc_serialize::json::{ToJson};
 use erguotou::json::{JsonParam, JsonRPC};
 
 fn main() {
-    let mut data = BTreeMap::new();
-    data.insert("hello".to_owned(), "world".to_owned());
+    let data = btreemap! {
+        "hello".to_owned() => "world".to_owned()
+    };
 
     let mut client = Client::new();
 

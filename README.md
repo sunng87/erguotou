@@ -27,24 +27,28 @@ erguotou = "*"
 Demo code
 
 ```rust
-    use hyper::client::Client;
-    use rustc_serialize::json::ToJson;
-    use ::json::{JsonParam, JsonRPC};
+extern crate hyper;
+extern crate rustc_serialize;
+extern crate erguotou;
 
-    // the data you are going to send
-    // it can be anything of rustc_serialize::json::ToJson
-    let mut data = BTreeMap::new();
-    data.insert("hello".to_owned(), "world".to_owned());
+use hyper::client::Client;
+use rustc_serialize::json::ToJson;
+use erguotou::json::{JsonParam, JsonRPC};
 
-    // the hyper client
-    let mut client = Client::new();
+// the data you are going to send
+// it can be anything of rustc_serialize::json::ToJson
+let mut data = BTreeMap::new();
+data.insert("hello".to_owned(), "world".to_owned());
 
-    // construct JsonParam from data
-    let mut json_param: JsonParam = JsonParam::from(&data as &ToJson);
-    // the hyper request builder calls, no need for body() and header()
-    // a single json() call to fill them all
-    let mut resp = client.post("http://localhost:8080")
-        .json(&mut json_param).send().unwrap();
+// the hyper client
+let mut client = Client::new();
+
+// construct JsonParam from data
+let mut json_param: JsonParam = JsonParam::from(&data as &ToJson);
+// the hyper request builder calls, no need for body() and header()
+// a single json() call to fill them all
+let mut resp = client.post("http://localhost:8080")
+    .json(&mut json_param).send().unwrap();
 
 ```
 

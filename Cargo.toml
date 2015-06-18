@@ -13,3 +13,10 @@ name = "erguotou"
 [dependencies]
 rustc-serialize = "*"
 hyper = "*"
+
+[dev-dependencies]
+iron = "*"
+router = "*"
+maplit = "*"
+bodyparser = "*"
+persistent = "*"

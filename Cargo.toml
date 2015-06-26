@@ -13,6 +13,7 @@ name = "erguotou"
 [dependencies]
 rustc-serialize = "*"
 hyper = "*"
+url ="*"
 
 [dev-dependencies]
 iron = "*"

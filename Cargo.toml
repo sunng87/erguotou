@@ -1,6 +1,6 @@
 [package]
 name = "erguotou"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Ning Sun <sunng@about.me>"]
 description = "High-level hyper client utilities"
 license = "MIT"

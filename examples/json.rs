@@ -15,7 +15,7 @@ fn main() {
         "hello".to_owned() => "world".to_owned()
     };
 
-    let mut client = Client::new();
+    let client = Client::new();
 
     let mut json_param: JsonParam = JsonParam::from(&data as &ToJson);
     let mut resp = client.post("http://localhost:3000/json")
